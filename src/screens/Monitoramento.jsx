@@ -226,7 +226,9 @@ export default function Monitoramento({ navigation }) {
         source={require("../../assets/background.png")}
         style={styles.bg}
       >
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView
+        showsVerticalScrollIndicator
+        contentContainerStyle={styles.container}>
           <Text style={styles.title}>Monitoramento</Text>
           {embarcacoes.map((item) => (
             <View style={styles.item} key={item.id}>
@@ -297,6 +299,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingTop: 20, // Adicionando padding superior para ajustar a posição da barra de rolagem
+    
   },
   title: {
     fontSize: 26,

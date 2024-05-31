@@ -104,7 +104,6 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   bg: {
     flex: 1,
-
   },
   container: {
     flex: 1,
