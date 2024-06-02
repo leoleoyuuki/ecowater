@@ -5,13 +5,27 @@ import {
   StyleSheet,
   View,
   ScrollView,
+  Alert,
 } from "react-native";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { BarChart, PieChart } from "react-native-chart-kit";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Monitoramento({ navigation }) {
   const [embarcacoes, setEmbarcacoes] = useState([]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      AsyncStorage.getItem("logged").then((value) => {
+        if (!value) {
+          Alert.alert("Acesso negado", "Você precisa estar logado para acessar esta página.");
+          navigation.navigate("Login");
+        }
+      });
+    }, [])
+  );
 
   const getEmbarcacoes = async () => {
     try {
@@ -221,7 +235,7 @@ export default function Monitoramento({ navigation }) {
   ];
   return (
     <>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} menu={true} />
       <ImageBackground
         source={require("../../assets/background.png")}
         style={styles.bg}

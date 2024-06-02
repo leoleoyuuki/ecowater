@@ -1,13 +1,27 @@
 import React from "react";
-import { ImageBackground, Text, StyleSheet, View } from "react-native";
+import { ImageBackground, Text, StyleSheet, View, Alert } from "react-native";
 import Header from "../../components/Header";
 import { ScrollView } from "react-native-gesture-handler";
 import Footer from "../../components/Footer";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home({ navigation }) {
+
+  useFocusEffect(
+    React.useCallback(() => {
+      AsyncStorage.getItem("logged").then((value) => {
+        if (!value) {
+          Alert.alert("Acesso negado", "Você precisa estar logado para acessar esta página.");
+          navigation.navigate("Login");
+        }
+      });
+    }, [])
+  );
+
   return (
     <>
-      <Header navigation={navigation} />
+      <Header navigation={navigation} menu={true} />
       <ImageBackground
         source={require("../../assets/background.png")}
         style={styles.bg}
@@ -108,6 +122,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    backgroundColor: 'rgba(0, 0, 0, 0.505)',
   },
   section: {
     marginBottom: 20,
@@ -148,7 +163,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#b9baba',
+    color: '#f7f7f7',
+    fontWeight:'500',
     padding: 10,
     borderRadius: 8,
     marginBottom: 10,
