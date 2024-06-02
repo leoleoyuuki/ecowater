@@ -1,31 +1,33 @@
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather } from "@expo/vector-icons";
 
-export default function Header({ navigation }) {
+export default function Header({ navigation, menu }) {
+
+  
   return (
     <SafeAreaView style={styles.header}>
-      <View>
+      <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
         <Image source={require("../assets/Logo.png")} style={styles.img} />
-      </View>
+      </TouchableOpacity>
 
-      <View style={styles.icon}>
+      {menu === true ? <View style={styles.icon}>
           <Feather
             name="menu"
             size={33}
             color="#fff"
             onPress={() => navigation.openDrawer()}
           />
-      </View>
+      </View> : null}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    paddingTop: 7,
+    paddingTop: 10,
+    paddingBottom: 15,
     paddingHorizontal: 20,
-    height: 115,
     backgroundColor: "#000",
     flexDirection: "row",
     justifyContent: "space-between",

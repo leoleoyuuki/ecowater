@@ -17,7 +17,6 @@ const Footer = ({navigation}) => {
 
 const styles = StyleSheet.create({
   footer: {
-    width: "100%",
     backgroundColor: "#0d0d0d",
     paddingVertical: 18,
     paddingHorizontal: 20,
