@@ -15,6 +15,7 @@ export default function Drawer() {
   return (
     <NavigationContainer>
       <Navigator
+      initialRouteName="Login"
         screenOptions={{
           headerShown: false,
           drawerStyle: {
