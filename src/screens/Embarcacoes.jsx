@@ -33,7 +33,7 @@ export default function Embarcacoes({ navigation }) {
   const getEmbarcacoes = async () => {
     try {
       // Lógica de requisição para buscar informações das embarcações (substitua pelos dados reais)
-      const response = await axios.get("http://localhost:80/embarcacoes");
+      const response = await axios.get("http://192.168.15.58:80/embarcacoes");
       console.log(response.data);
       setEmbarcacoes(response.data);
     } catch (error) {
@@ -57,7 +57,7 @@ export default function Embarcacoes({ navigation }) {
           contentContainerStyle={styles.container}
         >
           <Text style={styles.title}>Monitoramento</Text>
-          {embarcacoes.map((item) => (
+          {embarcacoes == null ? embarcacoes.map((item) => (
             <View style={styles.item} key={item.id}>
               <Text style={styles.itemTitle}>{item.nome}</Text>
               <Text style={styles.itemText}>Tipo: {item.tipo}</Text>
@@ -69,7 +69,7 @@ export default function Embarcacoes({ navigation }) {
                 Ano de Fabricação: {item.anoFabricacao}
               </Text>
             </View>
-          ))}
+          )) : null}
          
           <Footer navigation={navigation} />
         </ScrollView>
