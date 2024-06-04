@@ -6,7 +6,6 @@ import {
   View,
   ScrollView,
   Alert,
-  FlatList,
 } from "react-native";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
