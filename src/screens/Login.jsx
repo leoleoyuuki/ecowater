@@ -1,6 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/Firebaseconfig";
 import React, { useState } from "react";
+import { sendPasswordResetEmail } from "firebase/auth";
 import {
   Button,
   TextInput,
@@ -46,6 +47,18 @@ export default function Login({ navigation }) {
       });
   };
 
+  const esqueceu = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        Alert.alert("Email enviado", "Verifique sua caixa de entrada.");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Alert.alert("Erro", "Email não encontrado");
+      });
+  };
+
   return (
     <>
       <Header navigation={navigation} menu={false} />
@@ -78,6 +91,9 @@ export default function Login({ navigation }) {
       
               <TouchableOpacity style={styles.btn} onPress={handleLogin}>
                 <Text style={styles.txtBtn}>Entrar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={esqueceu}>
+                <Text style={styles.cadastre}>esqueceu a senha ?</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=> navigation.navigate('Cadastro')}>
                 <Text style={styles.cadastre}> Não tem uma conta? Crie uma! </Text>

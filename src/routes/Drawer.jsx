@@ -7,6 +7,8 @@ import Monitoramento from "../screens/Monitoramento";
 import Login from "../screens/Login";
 import Cadastro from "../screens/Cadastro";
 import Logout from "../screens/Logout";
+import Embarcacoes from "../screens/Embarcacoes";
+import Incidentes from "../screens/Incidentes";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 export default function Drawer() {
@@ -70,6 +72,24 @@ export default function Drawer() {
           options={{
             drawerIcon: () => (
               <Ionicons name="exit-outline" size={24} color="black" />
+            ),
+          }}
+        />
+        <Screen
+          name="Incidentes"
+          component={Incidentes}
+          options={{
+            drawerIcon: () => (
+              <Ionicons name="alert-circle-outline" size={24} color="black" />
+            ),
+          }}
+        />
+        <Screen
+          name="Embarcacoes"
+          component={Embarcacoes}
+          options={{
+            drawerIcon: () => (
+              <Ionicons name="boat-outline" size={24} color="black" />
             ),
           }}
         />

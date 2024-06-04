@@ -12,6 +12,7 @@ import Footer from "../../components/Footer";
 import { BarChart, PieChart } from "react-native-chart-kit";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 export default function Monitoramento({ navigation }) {
   const [embarcacoes, setEmbarcacoes] = useState([]);
