@@ -32,8 +32,7 @@ export default function Incidentes({ navigation }) {
 
   const getIncidentes = async () => {
     try {
-      // Lógica de requisição para buscar informações dos incidentes (substitua pelos dados reais)
-      const response = await axios.get("http://localhost:80/incidentes");
+      const response = await axios.get("http://192.168.15.58:80/incidentes");
       console.log(response.data);
       setIncidentes(response.data);
     } catch (error) {
