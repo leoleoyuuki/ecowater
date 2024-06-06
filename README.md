@@ -29,7 +29,7 @@ EcoWater Embarcações é uma plataforma inovadora e abrangente dedicada ao moni
 ## Instalação
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/leoleoyuuki/eecowater.git
+    git clone https://github.com/leoleoyuuki/ecowater.git
     ```
 2. Navegue até o diretório do projeto:
     ```bash
@@ -53,7 +53,7 @@ EcoWater Embarcações é uma plataforma inovadora e abrangente dedicada ao moni
 - **Monitoramento**: Monitoramento dos níveis de poluição em tempo real.
 
 ## Contato
-Para mais informações, visite nosso [site](https://example.com) ou entre em contato pelo e-mail [leo.yuuki@icloud.com](mailto:leo.yuuki@icloud.com).
+Para mais informações, visite nosso [site](172.210.12.65:8081) ou entre em contato pelo e-mail [leo.yuuki@icloud.com](mailto:leo.yuuki@icloud.com).
 **obs:** Esse link te levará para um "improviso" de página web de um App Mobile, para uma melhor experiência no teste, ao entrar no link, aperte `**F12**` no topo de seu teclado, isso abrirá um "DevTools" em seguida você pressione junto **`Ctrl + Shift + M`**, isso fará com que o website fique em formato de celular.
 
 ### Integrantes do Grupo
