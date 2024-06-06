@@ -48,7 +48,7 @@ export default function Incidentes({ navigation }) {
     <>
       <Header navigation={navigation} menu={true} />
       <ImageBackground
-        source={require("../../assets/background.png")}
+        source={require("../../assets/bgweb.png")}
         style={styles.bg}
       >
         <ScrollView

@@ -28,7 +28,7 @@ export default function Logout({ navigation }) {
     <>
       <Header navigation={navigation} menu={false} />
       <ImageBackground
-        source={require("../../assets/background.png")}
+        source={require("../../assets/bgweb.png")}
         style={styles.container}
       >
       </ImageBackground>

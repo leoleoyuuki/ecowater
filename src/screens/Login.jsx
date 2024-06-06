@@ -64,7 +64,7 @@ export default function Login({ navigation }) {
       <Header navigation={navigation} menu={false} />
       <ScrollView contentContainerStyle={{flex: 1}}>
           <ImageBackground
-            source={require("../../assets/background.png")}
+            source={require("../../assets/bgweb.png")}
             style={styles.container}
           >
             <View style={styles.overlay}>
