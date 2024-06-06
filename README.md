@@ -1,4 +1,5 @@
 # EcoWater Embarcações
+<img src="Logo.png" width=180 />
 
 ## Visão Geral
 EcoWater Embarcações é uma plataforma inovadora e abrangente dedicada ao monitoramento ambiental e gerenciamento sustentável das atividades marítimas. Nosso objetivo é proporcionar um sistema eficiente e preciso para o controle da poluição marinha, garantindo a preservação dos nossos oceanos e a sustentabilidade das operações das embarcações.
