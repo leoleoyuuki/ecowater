@@ -56,7 +56,7 @@ export default function Embarcacoes({ navigation }) {
           showsVerticalScrollIndicator
           contentContainerStyle={styles.container}
         >
-          <Text style={styles.title}>Monitoramento</Text>
+          <Text style={styles.title}>Embarcações</Text>
           {embarcacoes == null ? embarcacoes.map((item) => (
             <View style={styles.item} key={item.id}>
               <Text style={styles.itemTitle}>{item.nome}</Text>
@@ -67,7 +67,7 @@ export default function Embarcacoes({ navigation }) {
               </Text>
               <Text style={styles.itemText}>
                 Ano de Fabricação: {item.anoFabricacao}
-              </Text>
+              </Text> 
             </View>
           )) : null}
          

@@ -12,7 +12,7 @@ import Footer from "../../components/Footer";
 import { BarChart, PieChart } from "react-native-chart-kit";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
+import { dadosEmbarcacoes } from "../data/dadosmbarcacoes";
 
 export default function Monitoramento({ navigation }) {
   const [embarcacoes, setEmbarcacoes] = useState([]);
@@ -30,153 +30,6 @@ export default function Monitoramento({ navigation }) {
 
   const getEmbarcacoes = async () => {
     try {
-      // Lógica de requisição para buscar informações das embarcações (substitua pelos dados reais)
-      const dadosEmbarcacoes = [
-        {
-          id: 1,
-          nome: "Embarcação 1",
-          tipo: "Cargueiro",
-          bandeira: "Brasil",
-          capacidade: 10000,
-          anoFabricacao: 2015,
-          sensores: [
-            {
-              id: 1,
-              tipo: "CO2",
-              localizacao: "10.1234,-20.5678",
-              dataInstalacao: "2022-01-01",
-              status: "Ativo",
-              nivelPoluicao: 50,
-            },
-            {
-              id: 2,
-              tipo: "Óleo",
-              localizacao: "10.4321,-20.8765",
-              dataInstalacao: "2022-02-01",
-              status: "Inativo",
-              nivelPoluicao: 30,
-            },
-          ],
-          incidentes: [
-            {
-              id: 1,
-              data: "2024-05-30",
-              descricao: "Vazamento de óleo",
-              tipoPoluicao: "Óleo",
-              severidade: "Alta",
-            },
-          ],
-        },
-        {
-          id: 2,
-          nome: "Embarcação 2",
-          tipo: "Petroleiro",
-          bandeira: "EUA",
-          capacidade: 15000,
-          anoFabricacao: 2018,
-          sensores: [
-            {
-              id: 1,
-              tipo: "CO2",
-              localizacao: "15.6789,-25.9876",
-              dataInstalacao: "2022-03-15",
-              status: "Ativo",
-              nivelPoluicao: 60,
-            },
-            {
-              id: 2,
-              tipo: "Óleo",
-              localizacao: "15.4321,-25.8765",
-              dataInstalacao: "2022-04-20",
-              status: "Ativo",
-              nivelPoluicao: 40,
-            },
-          ],
-          incidentes: [],
-        },
-        {
-          id: 3,
-          nome: "Embarcação 3",
-          tipo: "Porta-Contentores",
-          bandeira: "China",
-          capacidade: 20000,
-          anoFabricacao: 2017,
-          sensores: [
-            {
-              id: 1,
-              tipo: "CO2",
-              localizacao: "20.9876,-30.1234",
-              dataInstalacao: "2022-05-10",
-              status: "Ativo",
-              nivelPoluicao: 55,
-            },
-          ],
-          incidentes: [
-            {
-              id: 1,
-              data: "2023-11-18",
-              descricao: "Colisão com iceberg",
-              tipoPoluicao: "Óleo",
-              severidade: "Média",
-            },
-          ],
-        },
-        {
-          id: 4,
-          nome: "Embarcação 4",
-          tipo: "Navio de Cruzeiro",
-          bandeira: "Itália",
-          capacidade: 5000,
-          anoFabricacao: 2019,
-          sensores: [
-            {
-              id: 1,
-              tipo: "CO2",
-              localizacao: "25.3456,-35.6789",
-              dataInstalacao: "2022-06-25",
-              status: "Inativo",
-              nivelPoluicao: 35,
-            },
-          ],
-          incidentes: [],
-        },
-        {
-          id: 5,
-          nome: "Embarcação 5",
-          tipo: "Navio de Pesquisa",
-          bandeira: "Alemanha",
-          capacidade: 8000,
-          anoFabricacao: 2016,
-          sensores: [
-            {
-              id: 1,
-              tipo: "CO2",
-              localizacao: "30.6789,-40.5432",
-              dataInstalacao: "2022-07-30",
-              status: "Ativo",
-              nivelPoluicao: 45,
-            },
-            {
-              id: 2,
-              tipo: "Óleo",
-              localizacao: "30.8765,-40.4321",
-              dataInstalacao: "2022-08-30",
-              status: "Inativo",
-              nivelPoluicao: 25,
-            },
-          ],
-          incidentes: [
-            {
-              id: 1,
-              data: "2024-02-12",
-              descricao: "Acidente com redes de pesca",
-              tipoPoluicao: "Resíduos",
-              severidade: "Baixa",
-            },
-          ],
-        },
-      ];
-
       setEmbarcacoes(dadosEmbarcacoes);
     } catch (error) {
       console.error(error);
@@ -203,22 +56,19 @@ export default function Monitoramento({ navigation }) {
     }));
   };
   const renderBandeiraData = (embarcacoes) => {
-    // Inicializar um objeto com todas as bandeiras e contadores zero
     const todasBandeiras = {};
     embarcacoes.forEach((embarcacao) => {
       todasBandeiras[embarcacao.bandeira] = 0;
     });
 
-    // Contar a quantidade de embarcações para cada bandeira
     embarcacoes.forEach((embarcacao) => {
       todasBandeiras[embarcacao.bandeira]++;
     });
 
-    // Transformar o objeto em um array de objetos com o nome da bandeira e a quantidade de vezes que ela aparece
     return Object.keys(todasBandeiras).map((bandeira, index) => ({
       name: bandeira,
       quantidade: todasBandeiras[bandeira],
-      color: colors[index % colors.length], // Selecionando cores da paleta
+      color: colors[index % colors.length],
     }));
   };
 
@@ -313,7 +163,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingTop: 20, // Adicionando padding superior para ajustar a posição da barra de rolagem
+    paddingTop: 20, 
     
   },
   title: {
