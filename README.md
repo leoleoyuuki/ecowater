@@ -53,4 +53,4 @@ EcoWater Embarcações é uma plataforma inovadora e abrangente dedicada ao moni
 
 ## Contato
 Para mais informações, visite nosso [site](https://example.com) ou entre em contato pelo e-mail [leo.yuuki@icloud.com](mailto:leo.yuuki@icloud.com).
-**obs:** Esse link te levará para um "improviso" de página web de um App Mobile, para uma melhor experiência no teste, ao entrar no link, aperte **F12** no topo de seu teclado, isso abrirá um "DevTools" em seguida você pressione junto **Ctrl + Shift + M**, isso fará com que o website fique em formato de celular.
+**obs:** Esse link te levará para um "improviso" de página web de um App Mobile, para uma melhor experiência no teste, ao entrar no link, aperte `**F12**` no topo de seu teclado, isso abrirá um "DevTools" em seguida você pressione junto `**Ctrl + Shift + M**`, isso fará com que o website fique em formato de celular.
