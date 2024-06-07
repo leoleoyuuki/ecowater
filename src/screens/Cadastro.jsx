@@ -34,7 +34,6 @@ export default function Cadastro({ navigation }) {
     }, [])
   );
 
-  //Documentar Requisição!!!!! - Depois apagar comentario
   const handleCreateUser = () => {
     if (password === confirmPassword) {
       createUserWithEmailAndPassword(auth, email, password)

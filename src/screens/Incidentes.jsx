@@ -32,7 +32,7 @@ export default function Incidentes({ navigation }) {
 
   const getIncidentes = async () => {
     try {
-      const response = await axios.get("http://192.168.15.58:80/incidentes");
+      const response = await axios.get("http://172.210.12.65:80/incidentes");
       console.log(response.data);
       setIncidentes(response.data);
     } catch (error) {

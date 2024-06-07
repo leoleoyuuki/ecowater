@@ -22,7 +22,7 @@ EcoWater Embarcações é uma plataforma inovadora e abrangente dedicada ao moni
   - `Incidentes.jsx`: Requisição GET para API do Java Spring para listar Incidentes. 
   - `Login.jsx`: Login de usuário pelo firebase.
   - `Logout.jsx`: Remoção da autenticação.
-  - `Monitoramento.jsx`: Dados fictícios para demonstração de gráficos.
+  - `Monitoramento.jsx`: Requisição GET para API do Java Spring para Monitorar e Analisar gráficos. 
 - `routes/`: Configuração das rotas de navegação.
 - `assets/`: Imagens e outros recursos estáticos.
 

@@ -98,23 +98,24 @@ O aplicativo utiliza Firebase Authentication para gerenciar o processo de autent
 - **Descrição**: Retorna a lista de embarcações.
 - **Exemplo de Requisição**:
   ```bash
-  GET http://192.168.15.58:80/embarcacoes
+  GET http://172.210.12.65:80/embarcacoes
   ```
 - **Exemplo de Resposta**:
   ```json
   [
     {
-      "id": 1,
-      "nome": "Embarcação 1",
+      "id": 7,
+      "nome": "Navio Mercante",
       "tipo": "Cargueiro",
-      "bandeira": "Brasil",
-      "capacidade": 10000,
-      "anoFabricacao": 2015,
+      "bandeira": "Thailandia",
+      "capacidade": 20000.0,
+      "anoFabricacao": 2010,
       "proprietario": {
-        /*Informações
-            Do
-            Propriettário
-          */
+        "id": 1,
+        "nome": "João Silva",
+        "endereco": "Rua das Flores, 123, São Paulo, SP",
+        "telefone": "(11) 98765-4321",
+        "email": "joao.silva@example.com"
       }
     }
   ]
@@ -127,21 +128,76 @@ O aplicativo utiliza Firebase Authentication para gerenciar o processo de autent
 - **Descrição**: Retorna a lista de incidentes.
 - **Exemplo de Requisição**:
   ```bash
-  GET http://192.168.15.58:80/incidentes
+  GET http://172.210.12.65:80/incidentes
   ```
 - **Exemplo de Resposta**:
   ```json
   [
     {
-      "id": 1,
-      "data": "2024-05-30",
-      "descricao": "Vazamento de óleo",
-      "tipoPoluicao": "Óleo",
-      "severidade": "Alta",
+      "id": 7,
       "embarcacao": {
-        "id": 1,
-        "nome": "Embarcação 1"
-      }
+        "id": 7,
+        "nome": "Navio Mercante",
+        "tipo": "Cargueiro",
+        "bandeira": "Thailandia",
+        "capacidade": 20000.0,
+        "anoFabricacao": 2010,
+        "proprietario": {
+          "id": 1,
+          "nome": "João Silva",
+          "endereco": "Rua das Flores, 123, São Paulo, SP",
+          "telefone": "(11) 98765-4321",
+          "email": "joao.silva@example.com"
+        }
+      },
+      "data": "2024-06-01",
+      "descricao": "Derramamento de óleo na costa",
+      "tipoPoluicao": "Óleo",
+      "severidade": "Alta"
+    }
+  ]
+  ```
+
+### Monitoramento
+
+- **URL**: `/monitoramentos`
+- **Método HTTP**: `GET`
+- **Descrição**: Retorna a lista de monitoramento.
+- **Exemplo de Requisição**:
+  ```bash
+  GET http://172.210.12.65:80/monitoramentos
+  ```
+- **Exemplo de Resposta**:
+  ```json
+  [
+    {
+      "id": 8,
+      "embarcacao": {
+        "id": 7,
+        "nome": "Navio Mercante",
+        "tipo": "Cargueiro",
+        "bandeira": "Thailandia",
+        "capacidade": 20000.0,
+        "anoFabricacao": 2010,
+        "proprietario": {
+          "id": 1,
+          "nome": "João Silva",
+          "endereco": "Rua das Flores, 123, São Paulo, SP",
+          "telefone": "(11) 98765-4321",
+          "email": "joao.silva@example.com"
+        }
+      },
+      "sensor": {
+        "id": 7,
+        "tipo": "Temperatura",
+        "localizacao": "Sala de servidores",
+        "dataInstalacao": "2024-05-15",
+        "status": "Ativo"
+      },
+      "data": "2024-06-01",
+      "hora": "14:30",
+      "localizacao": "Costa Oeste",
+      "nivelPoluicao": 3.5
     }
   ]
   ```

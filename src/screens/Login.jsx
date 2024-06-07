@@ -33,7 +33,6 @@ export default function Login({ navigation }) {
     }, [])
   );
 
-  //Documentar Requisição!!!!! - Depois apagar comentario
   const handleLogin = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {

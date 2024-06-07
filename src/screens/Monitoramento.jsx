@@ -30,7 +30,7 @@ export default function Monitoramento({ navigation }) {
 
   const getEmbarcacoes = async () => {
     try {
-      const response = await axios.get("http://192.168.15.58:80/monitoramentos");
+      const response = await axios.get("http://172.210.12.65:80/monitoramentos");
       console.log(response.data);
       setEmbarcacoes(response.data);
     } catch (error) {
