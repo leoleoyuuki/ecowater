@@ -9,7 +9,6 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import Header from "../../components/Header";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import Footer from "../../components/Footer";
 
 export default function Logout({ navigation }) {
   const [email, setEmail] = useState("");

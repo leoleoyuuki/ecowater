@@ -12,7 +12,7 @@ import Footer from "../../components/Footer";
 import { BarChart, PieChart } from "react-native-chart-kit";
 import { useFocusEffect } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { dadosEmbarcacoes } from "../data/dadosmbarcacoes";
+import axios from "axios";
 
 export default function Monitoramento({ navigation }) {
   const [embarcacoes, setEmbarcacoes] = useState([]);
@@ -30,7 +30,9 @@ export default function Monitoramento({ navigation }) {
 
   const getEmbarcacoes = async () => {
     try {
-      setEmbarcacoes(dadosEmbarcacoes);
+      const response = await axios.get("http://192.168.15.58:80/monitoramentos");
+      console.log(response.data);
+      setEmbarcacoes(response.data);
     } catch (error) {
       console.error(error);
     }
@@ -40,29 +42,27 @@ export default function Monitoramento({ navigation }) {
     getEmbarcacoes();
   }, []);
 
-  const renderSensorData = (sensores) => {
-    const sensorData = {
-      CO2: 0,
-      Óleo: 0,
-    };
-
-    sensores.forEach((sensor) => {
-      sensorData[sensor.tipo] += sensor.nivelPoluicao;
-    });
-
-    return Object.keys(sensorData).map((tipo) => ({
-      name: tipo,
-      nivelPoluicao: sensorData[tipo],
-    }));
+  const renderPollutionData = (item) => {
+    return [
+      {
+        name: "Nível Poluição",
+        value: (item.nivelPoluicao * 5000),
+      },
+      {
+        name: "Capacidade Embarcação",
+        value: item.embarcacao.capacidade,
+      },
+    ];
   };
+
   const renderBandeiraData = (embarcacoes) => {
     const todasBandeiras = {};
     embarcacoes.forEach((embarcacao) => {
-      todasBandeiras[embarcacao.bandeira] = 0;
+      todasBandeiras[embarcacao.embarcacao.bandeira] = 0;
     });
 
     embarcacoes.forEach((embarcacao) => {
-      todasBandeiras[embarcacao.bandeira]++;
+      todasBandeiras[embarcacao.embarcacao.bandeira]++;
     });
 
     return Object.keys(todasBandeiras).map((bandeira, index) => ({
@@ -84,6 +84,7 @@ export default function Monitoramento({ navigation }) {
     "#99FF33",
     "#33FF99",
   ];
+
   return (
     <>
       <Header navigation={navigation} menu={true} />
@@ -92,45 +93,54 @@ export default function Monitoramento({ navigation }) {
         style={styles.bg}
       >
         <ScrollView
-        showsVerticalScrollIndicator
-        contentContainerStyle={styles.container}>
+          showsVerticalScrollIndicator
+          contentContainerStyle={styles.container}
+        >
           <Text style={styles.title}>Monitoramento</Text>
           {embarcacoes.map((item) => (
             <View style={styles.item} key={item.id}>
-              <Text style={styles.itemTitle}>{item.nome}</Text>
-              <Text style={styles.itemText}>Tipo: {item.tipo}</Text>
-              <Text style={styles.itemText}>Bandeira: {item.bandeira}</Text>
+              <Text style={styles.itemTitle}>{item.embarcacao.nome}</Text>
+              <Text style={styles.itemText}>Tipo: {item.embarcacao.tipo}</Text>
+              <Text style={styles.itemText}>Bandeira: {item.embarcacao.bandeira}</Text>
               <Text style={styles.itemText}>
-                Capacidade: {item.capacidade} toneladas
+                Capacidade: {item.embarcacao.capacidade} toneladas
               </Text>
               <Text style={styles.itemText}>
-                Ano de Fabricação: {item.anoFabricacao}
+                Ano de Fabricação: {item.embarcacao.anoFabricacao}
               </Text>
-              <Text style={styles.sectionTitle}>Sensores</Text>
+              <Text style={styles.sectionTitle}>Níveis de Poluição e Capacidade</Text>
               <BarChart
                 style={styles.chart}
                 data={{
-                  labels: renderSensorData(item.sensores).map(
-                    (sensor) => sensor.name
-                  ),
+                  labels: renderPollutionData(item).map((data) => data.name),
                   datasets: [
                     {
-                      data: renderSensorData(item.sensores).map(
-                        (sensor) => sensor.nivelPoluicao
-                      ),
+                      data: renderPollutionData(item).map((data) => data.value),
                     },
                   ],
                 }}
                 width={300}
                 height={200}
-                yAxisSuffix="ppm"
+                yAxisLabel=""
+                yAxisSuffix=""
+                yAxisInterval={1}
                 chartConfig={{
                   backgroundColor: "#FFFFFF",
                   backgroundGradientFrom: "#FFFFFF",
                   backgroundGradientTo: "#FFFFFF",
                   decimalPlaces: 0,
                   color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                  labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                  style: {
+                    borderRadius: 16,
+                  },
+                  propsForDots: {
+                    r: "6",
+                    strokeWidth: "2",
+                    stroke: "#ffa726",
+                  },
                 }}
+                fromZero
               />
             </View>
           ))}
@@ -163,8 +173,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    paddingTop: 20, 
-    
+    paddingTop: 20,
   },
   title: {
     fontSize: 26,

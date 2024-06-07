@@ -41,9 +41,11 @@ export default function Embarcacoes({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    getEmbarcacoes();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      getEmbarcacoes();
+    }, [])
+  );
 
   return (
     <>
@@ -57,7 +59,7 @@ export default function Embarcacoes({ navigation }) {
           contentContainerStyle={styles.container}
         >
           <Text style={styles.title}>Embarcações</Text>
-          {embarcacoes == null ? embarcacoes.map((item) => (
+          {embarcacoes.map((item) => (
             <View style={styles.item} key={item.id}>
               <Text style={styles.itemTitle}>{item.nome}</Text>
               <Text style={styles.itemText}>Tipo: {item.tipo}</Text>
@@ -69,7 +71,7 @@ export default function Embarcacoes({ navigation }) {
                 Ano de Fabricação: {item.anoFabricacao}
               </Text> 
             </View>
-          )) : null}
+          ))}
          
           <Footer navigation={navigation} />
         </ScrollView>
